@@ -126,9 +126,16 @@ namespace BankAccount.Tests
         }
 
         [TestMethod()]
-        public void Withdraw_MoreThanBalance_ThrowsArgumentException()
+        [DataRow(1000)]
+        public void Withdraw_MoreThanBalance_ThrowsArgumentException(double withdrawAmount)
         {
-            Assert.Fail();
+            // double initialBalance = 0;
+            // An account created with the default constructor has a 0 balance
+
+            Assert.ThrowsException<ArgumentOutOfRangeException>
+                (
+                    () => acc.Withdraw(withdrawAmount)
+                );
         }
 
         [TestMethod()]
