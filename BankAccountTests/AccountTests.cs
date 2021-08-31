@@ -109,11 +109,12 @@ namespace BankAccount.Tests
         }
 
         [TestMethod()]
-        public void Withdraw_PositiveAmount_SubtractsFromBalance()
+        [DataRow(100, 50)]      // less than balance
+        [DataRow(50,50)]        // max amount = balance
+        [DataRow(9.99, 9.99)]   // cents
+        public void Withdraw_PositiveAmount_SubtractsFromBalance(double initialDeposit, double withdrawAmount)
         {
             // Arrange
-            double initialDeposit = 100;
-            double withdrawAmount = 50;
             double expectedBalance = initialDeposit - withdrawAmount;
 
             // Act
