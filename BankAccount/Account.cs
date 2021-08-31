@@ -41,7 +41,7 @@ namespace BankAccount
 
         public void Withdraw(double amt)
         {
-            throw new NotImplementedException();
+            Balance -= amt;
         }
     }
 }

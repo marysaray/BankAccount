@@ -107,5 +107,33 @@ namespace BankAccount.Tests
                     () => acc.Deposit(negativeDeposit)
                 );
         }
+
+        [TestMethod()]
+        public void Withdraw_PositiveAmount_SubtractsFromBalance()
+        {
+            // Arrange
+            double initialDeposit = 100;
+            double withdrawAmount = 50;
+            double expectedBalance = initialDeposit - withdrawAmount;
+
+            // Act
+            acc.Deposit(initialDeposit);
+            acc.Withdraw(withdrawAmount);
+
+            // Assert
+            Assert.AreEqual(expectedBalance, acc.Balance);
+        }
+
+        [TestMethod()]
+        public void Withdraw_MoreThanBalance_ThrowsArgumentException()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void Withdraw_NegativeAmount_ThrowsArgumentException()
+        {
+            Assert.Fail();
+        }
     }
 }
