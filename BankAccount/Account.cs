@@ -11,7 +11,6 @@ namespace BankAccount
     /// </summary>
     public class Account
     {
-        private double _balance;
 
         /// <summary>
         /// Deposits the amount in the bank account
@@ -21,27 +20,23 @@ namespace BankAccount
         /// <returns>The amound to deposit</returns>
         public double Deposit(double amt)
         {
-            _balance += amt;
-            return _balance;
+            if (amt <= 0)
+            {
+                throw new ArgumentOutOfRangeException(
+                    $"{nameof(amt)} must be a positive value.");
+            }
+            Balance += amt;
+            return Balance;
         }
 
         /// <summary>
         /// Get the current balance
         /// </summary>
-        public double Balance 
-        {
-            get 
-            {
-                return _balance;
-            }
-        }
+        public double Balance { get; private set; }
 
         public void Withdraw(double amt)
         {
             throw new NotImplementedException();
         }
     }
-
-    // Test - test for multiple deposits
-    // Test - negative deposits
 }
