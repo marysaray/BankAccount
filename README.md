@@ -17,6 +17,29 @@
   - Tests need to be maintained
   
   ## Test-Driven Development
+  
+  ```csharp
+    [TestClass()] // Attribute
+    public class AccountTests
+    {
+        [TestMethod()] // Attribute
+        public void Deposit_PositiveAmount_AddsToBalance()
+        {
+            /* AAA : Arrange Act Assert */
+
+            // Arrange: creating variables and object
+            Account acc = new Account();
+            const double startBalance = 0;
+            const double initialDeposit = 100;
+
+            // Act - Execute method under test
+            acc.Deposit(initialDeposit);
+
+            // Assert - Check a condition
+            Assert.AreEqual(startBalance + initialDeposit, acc.Balance);
+        }
+    }
+  ```
 
   **TDD starts by writing the tests:**
   
