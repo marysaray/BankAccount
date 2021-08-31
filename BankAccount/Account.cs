@@ -41,10 +41,15 @@ namespace BankAccount
 
         public void Withdraw(double amt)
         {
-            if (amt > Balance)
+            if(amt > Balance)
             {
                 throw new ArgumentOutOfRangeException(
                     $"{nameof(amt)} withdraw denied, insufficient funds.");
+            }
+            if (amt <= 0)
+            {
+                throw new ArgumentOutOfRangeException(
+                    $"{nameof(amt)} amount has to be greater than 0.");
             }
             Balance -= amt;
         }

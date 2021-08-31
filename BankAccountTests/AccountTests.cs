@@ -139,9 +139,17 @@ namespace BankAccount.Tests
         }
 
         [TestMethod()]
-        public void Withdraw_NegativeAmount_ThrowsArgumentException()
+        [DataRow(-1)]
+        [DataRow(0)]
+        public void Withdraw_NegativeAmount_ThrowsArgumentException(double negativeWithdraw)
         {
-            Assert.Fail();
+            // Arrange: [DataRow(data)]
+
+            // Assert => Act
+            Assert.ThrowsException<ArgumentOutOfRangeException>
+                (
+                    () => acc.Withdraw(negativeWithdraw)
+                );
         }
     }
 }
