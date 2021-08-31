@@ -9,21 +9,41 @@ using System.Threading.Tasks;
 namespace BankAccount.Tests
 {
     [TestClass()]
+    #region /* AAA : Arrange Act Assert */
+    // Arrange: creating variables and object
+    // Act: Execute method under test
+    // Assert:Check a condition 
+    #endregion
     public class AccountTests
     {
-        /* AAA : Arrange Act Assert */
+        [TestMethod()]
+        [TestCategory("Deposit")]
+        [DataRow(10_000)]
+        [DataRow(11234.12)]
+        [DataRow(10000.01)]
+        [DataRow(double.MaxValue)]
+        public void Deposit_TooLarge_ThrowsArgumentException(double tooLargeDeposit)
+        {
+            // Arrange:
+            Account acc = new Account();
 
-        // Arrange: creating variables and object
-        // Act: Execute method under test
-        // Assert:Check a condition 
+            // Assert => Act:
+            Assert.ThrowsException<ArgumentOutOfRangeException>
+                (
+                    () => acc.Deposit(tooLargeDeposit)
+                );
+        }
 
         [TestMethod()]
-        public void Deposit_PositiveAmount_AddsToBalance()
+        [TestCategory("Deposit")]
+        [DataRow(100)]
+        [DataRow(9999.99)]
+        [DataRow(0.1)]
+        public void Deposit_PositiveAmount_AddsToBalance(double initialDeposit)
         {
             // Arrange: 
             Account acc = new Account();
             const double startBalance = 0;
-            const double initialDeposit = 100;
 
             // Act:
             acc.Deposit(initialDeposit);
@@ -33,6 +53,7 @@ namespace BankAccount.Tests
         }
 
         [TestMethod()]
+        [TestCategory("Deposit")]
         public void Deposit_PositiveAmount_ReturnsUpdatedBalance()
         {
             // Arrange: 
@@ -49,6 +70,7 @@ namespace BankAccount.Tests
         }
 
         [TestMethod()]
+        [TestCategory("Deposit")]
         public void Deposit_MultipleAmounts_ReturnsAccumulatedBalance()
         {
             // Arrange:
@@ -67,6 +89,7 @@ namespace BankAccount.Tests
         }
 
         [TestMethod()]
+        [TestCategory("Deposit")]
         public void Deposit_NegativeAmounts_ThrowsArgumentException()
         {
             // Arrange:

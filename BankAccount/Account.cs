@@ -11,16 +11,26 @@ namespace BankAccount
     /// </summary>
     public class Account
     {
+        /// <summary>
+        /// Get the current balance
+        /// </summary>
+        public double Balance { get; private set; }
 
         /// <summary>
         /// Deposits the amount in the bank account
-        /// and returns the new balance
+        /// and returns the new balance.
         /// </summary>
-        /// <param name="amt"></param>
-        /// <returns>The amound to deposit</returns>
+        /// <param name="amt">data type double</param>
+        /// <returns>The deposit amount</returns>
         public double Deposit(double amt)
         {
-            if (amt <= 0)
+            if (amt >= 10000)
+            {
+                throw new ArgumentOutOfRangeException(
+                    $"{nameof(amt)} must be smaller than 10000.");
+            }
+
+            if(amt <= 0)
             {
                 throw new ArgumentOutOfRangeException(
                     $"{nameof(amt)} must be a positive value.");
@@ -28,11 +38,6 @@ namespace BankAccount
             Balance += amt;
             return Balance;
         }
-
-        /// <summary>
-        /// Get the current balance
-        /// </summary>
-        public double Balance { get; private set; }
 
         public void Withdraw(double amt)
         {
