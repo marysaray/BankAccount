@@ -16,6 +16,15 @@ namespace BankAccount.Tests
     #endregion
     public class AccountTests
     {
+        // field
+        private Account acc;
+
+        [TestInitialize] // Runs once before Each test
+        public void Initialize()
+        {
+            acc = new Account();
+        }
+
         [TestMethod()]
         [TestCategory("Deposit")]
         [DataRow(10_000)]
@@ -24,8 +33,8 @@ namespace BankAccount.Tests
         [DataRow(double.MaxValue)]
         public void Deposit_TooLarge_ThrowsArgumentException(double tooLargeDeposit)
         {
-            // Arrange:
-            Account acc = new Account();
+            // Arrange: Initialize method
+
 
             // Assert => Act:
             Assert.ThrowsException<ArgumentOutOfRangeException>
@@ -42,7 +51,6 @@ namespace BankAccount.Tests
         public void Deposit_PositiveAmount_AddsToBalance(double initialDeposit)
         {
             // Arrange: 
-            Account acc = new Account();
             const double startBalance = 0;
 
             // Act:
@@ -57,7 +65,6 @@ namespace BankAccount.Tests
         public void Deposit_PositiveAmount_ReturnsUpdatedBalance()
         {
             // Arrange: 
-            Account acc = new Account();
             double initialBalance = 0;
             double depositAmount = 10.55;
 
@@ -74,7 +81,6 @@ namespace BankAccount.Tests
         public void Deposit_MultipleAmounts_ReturnsAccumulatedBalance()
         {
             // Arrange:
-            Account acc = new Account();
             double deposit1 = 10;
             double deposit2 = 25;
             double expectedBalance = deposit1 + deposit2;
@@ -93,7 +99,6 @@ namespace BankAccount.Tests
         public void Deposit_NegativeAmounts_ThrowsArgumentException()
         {
             // Arrange:
-            Account acc = new Account();
             double negativeDeposit = -1;
 
             // Assert => Act:
