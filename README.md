@@ -16,21 +16,23 @@
   - Tests can easily be wrong
   - Tests need to be maintained
   
-  ## Test-Driven Development
-  
+  ## Test - Driven Development 
+  ### [ Single_Deposit_Example ]
   ```csharp
-    [TestClass()] // Attribute
+    [TestClass()] 
     public class AccountTests
     {
-        [TestMethod()] // Attribute
-        public void Deposit_PositiveAmount_AddsToBalance()
+        [TestMethod()]     
+        [DataRow(100)]     // Add Test Case: Between
+        [DataRow(9999.99)] // Add Test Case: Max
+        [DataRow(0.1)]     // Add Test Case: Min
+        public void Deposit_PositiveAmount_AddsToBalance(double initialDeposit)
         {
             /* AAA : Arrange Act Assert */
 
-            // Arrange: creating variables and object
+            // Arrange - Create object and variables
             Account acc = new Account();
             const double startBalance = 0;
-            const double initialDeposit = 100;
 
             // Act - Execute method under test
             acc.Deposit(initialDeposit);
