@@ -1,7 +1,10 @@
+[![CI](https://github.com/marysaray/BankAccount/actions/workflows/main.yml/badge.svg)](https://github.com/marysaray/BankAccount/actions/workflows/main.yml)
 # Bank Account Unit Testing Sample
+**Implementing and Learning the process of Test-Driven Development*
+
 ## Automated Code Testing
 
-**Implementing and Learning the process of Test-Driven Development*
+
 
   **How do we determine if our code works?**
   - Lots of manual testing
